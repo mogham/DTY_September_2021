@@ -74,4 +74,7 @@ class AIPlayer(Player):
                         game.getWinner(possiblePosition) == True or 
                         game.getWinner(possiblePosition) == False):
                         result = True
+                        break
+                if result:
+                    break
             return result                             
