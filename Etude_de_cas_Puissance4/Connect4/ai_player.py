@@ -70,6 +70,8 @@ class AIPlayer(Player):
             score -= 5
         elif subArray.count(player*(-1)) == 2 and subArray.count(0) == 2:
             score -= 4
+        elif subArray.count(player*(-1)) == 4:
+            score -= 10000
         return score
 
     def scoring(self, board):
