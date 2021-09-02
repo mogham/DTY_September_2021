@@ -14,7 +14,8 @@ class AIPlayer(Player):
         self.name = "VenusAI"
 
     def getColumn(self, board):
-        return self.alphaBetaMinMax(board, 4, -math.inf, math.inf, True)[0]     
+        depth = 4 
+        return self.alphaBetaMinMax(board, depth, -math.inf, math.inf, True)[0]     
     
     def alphaBetaMinMax(self, board, depth, alpha, beta, maximizing):
         possibleColumns = board.getPossibleColumns()
@@ -38,6 +39,11 @@ class AIPlayer(Player):
                 if score > value:
                     value = score
                     columnToPick = column
+                #elif score == value: 
+                #    prob = random.random()
+                #    if prob > 0.5 :
+                #        value = score
+                #        columnToPick = column
                 alpha = max(alpha, value)
                 if alpha >= beta:
                     break
@@ -52,6 +58,11 @@ class AIPlayer(Player):
                 if score < value:
                     value = score
                     columnToPick = column
+                #elif score == value: 
+                #    prob = random.random()
+                #    if prob > 0.5 :
+                #        value = score
+                #        columnToPick = column
                 beta = min(beta, value)
                 if alpha >= beta:
                     break

@@ -70,24 +70,39 @@ class Game(object):
 
     def run(self, randomStart=False):
         """This method runs the game, alterating between the players."""
-        self.reset(randomStart)
-        while not self.isOver():
-            player = self.players[self.currPlayer]
-            try:
-                if player.HUMAN:
-                    col = self.getColumnNoTimeout(player)
-                else:
-                    col = self.getColumn(player)
-            except Exception as e:
-                col = -1
+        GameWonP1 = 0
+        GameWonP2 = 0 
+        for i in range(100):
 
-            row = self.board.play(player.color, col)
-            pos = (col, row)
-            if pos not in self.board:
-                continue
+            self.reset(randomStart)
+            while not self.isOver():
+                player = self.players[self.currPlayer]
+                try:
+                    if player.HUMAN:
+                        col = self.getColumnNoTimeout(player)
+                    else:
+                        col = self.getColumn(player)
+                except Exception as e:
+                    col = -1
+
+                row = self.board.play(player.color, col)
+                pos = (col, row)
+                if pos not in self.board:
+                    continue
+
+                self.mayShowDebug()
+                self.winner = self.getWinner(pos)
+                if self.winner == self.players[0]:
+                    GameWonP1 += 1 
+                elif self.winner == self.players[1]:
+                    GameWonP2 += 1
+                self.currPlayer = (self.currPlayer + 1) % 2
+
+            
 
             self.mayShowDebug()
-            self.winner = self.getWinner(pos)
-            self.currPlayer = (self.currPlayer + 1) % 2
-
-        self.mayShowDebug()
+        
+        print('GameWonP1')
+        print(GameWonP1)
+        print('GameWonP2')
+        print(GameWonP2)

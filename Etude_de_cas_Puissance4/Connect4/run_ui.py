@@ -11,7 +11,7 @@ if __name__ == '__main__':
     parser.add_argument('--p2', default='player 2')
     args = parser.parse_args()
 
-    player1 = HumanPlayer()
+    player1 = AIPlayer()
     player1.name = args.p1
     player2 = AIPlayer()
     player2.name = args.p2
