@@ -39,6 +39,7 @@ class AIPlayer(Player):
                 if score > value:
                     value = score
                     columnToPick = column
+                # Randomizing
                 #elif score == value: 
                 #    prob = random.random()
                 #    if prob > 0.5 :
@@ -58,6 +59,7 @@ class AIPlayer(Player):
                 if score < value:
                     value = score
                     columnToPick = column
+                # Randomizing
                 #elif score == value: 
                 #    prob = random.random()
                 #    if prob > 0.5 :
@@ -143,5 +145,4 @@ class AIPlayer(Player):
                 for row in range(3):
                     if board[column][row] == color and board[column][row+1] == color and board[column][row+2] == color and board[column][row+3] == color:
                         return True
-
     
